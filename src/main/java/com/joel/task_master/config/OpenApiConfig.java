@@ -32,7 +32,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 @Server(
                         description = "Hosted Server",
-                        url = "https://task-master-backend-x8cz.onrender.com/"
+                        url = "https://task-master-v2.onrender.com/"
                 )
         },
         security=@SecurityRequirement(
