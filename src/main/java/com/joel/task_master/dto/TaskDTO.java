@@ -22,13 +22,9 @@ public class TaskDTO {
     @NotBlank
     private String taskStatus;
 
-    @NotEmpty
-    @NotBlank
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dueDate;
 
-    @NotEmpty
-    @NotBlank
     private Long employeeId;
     // FIELDS ------------------------------------------------------------------------------------------------------
 

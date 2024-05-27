@@ -1,5 +1,6 @@
 package com.joel.task_master.controller;
 
+import com.joel.task_master.dto.ApiResponseDto;
 import com.joel.task_master.dto.EmployeeDTO;
 import com.joel.task_master.dto.EmployeeTaskDTO;
 import com.joel.task_master.exception.TaskMasterException;
@@ -319,9 +320,9 @@ public class EmployeeController {
 
     @DeleteMapping("/employee/{empId}")
     @CrossOrigin
-    public ResponseEntity<Void> deleteEmpById(@PathVariable("empId") Long empId) {
+    public ResponseEntity<ApiResponseDto> deleteEmpById(@PathVariable("empId") Long empId) {
         employeeService.deleteEmployeeById(empId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new ApiResponseDto("Employee Deleted Successfully", true), HttpStatus.OK);
     }
 
     // GET EMPLOYEES BY NAME

@@ -1,5 +1,6 @@
 package com.joel.task_master.controller;
 
+import com.joel.task_master.dto.ApiResponseDto;
 import com.joel.task_master.dto.TaskDTO;
 import com.joel.task_master.exception.TaskMasterException;
 import com.joel.task_master.service.TaskService;
@@ -61,7 +62,7 @@ public class TaskController {
     )
     @PostMapping("/task/{empId}")
     @CrossOrigin
-    public ResponseEntity<TaskDTO> saveTask(@Valid  @RequestBody TaskDTO taskDTO, @PathVariable("empId") Long empId) {
+    public ResponseEntity<TaskDTO> saveTask(@Valid @RequestBody TaskDTO taskDTO, @PathVariable("empId") Long empId) {
         return new ResponseEntity<>(taskService.saveTask(taskDTO, empId), HttpStatus.CREATED);
     }
 
@@ -103,7 +104,7 @@ public class TaskController {
 
     @PutMapping("/task/{taskId}")
     @CrossOrigin
-    public ResponseEntity<TaskDTO> updateTaskById(@PathVariable("taskId") Long taskId,@Valid @RequestBody TaskDTO taskDTO) {
+    public ResponseEntity<TaskDTO> updateTaskById(@PathVariable("taskId") Long taskId, @Valid @RequestBody TaskDTO taskDTO) {
         return new ResponseEntity<>(taskService.updateTaskById(taskId, taskDTO), HttpStatus.OK);
     }
 
@@ -271,8 +272,8 @@ public class TaskController {
 
     @DeleteMapping("/task/{taskId}")
     @CrossOrigin
-    public ResponseEntity<Void> deleteTaskById(@PathVariable("taskId") Long taskId) {
+    public ResponseEntity<ApiResponseDto> deleteTaskById(@PathVariable("taskId") Long taskId) {
         taskService.deleteTaskById(taskId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new ApiResponseDto("Task Deleted Succesfully", true), HttpStatus.OK);
     }
 }
