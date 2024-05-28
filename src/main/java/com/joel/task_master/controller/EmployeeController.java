@@ -6,6 +6,7 @@ import com.joel.task_master.dto.EmployeeTaskDTO;
 import com.joel.task_master.exception.TaskMasterException;
 import com.joel.task_master.model.Employee;
 import com.joel.task_master.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -28,6 +29,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     // SAVE EMPLOYEE WITH TASKS ---------------------------------------------------------------------
+    @Hidden
     @Operation(
             summary = "SAVE EMPLOYEE WITH TASK(S)",
             description = "You can save the task(s) while saving the Employee",
