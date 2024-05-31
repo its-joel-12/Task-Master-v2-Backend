@@ -1,6 +1,7 @@
 package com.joel.task_master.service;
 
 import com.joel.task_master.dto.TaskDTO;
+import com.joel.task_master.dto.TaskEmpDto;
 import com.joel.task_master.exception.ResourceNotFoundException;
 import com.joel.task_master.model.Employee;
 import com.joel.task_master.model.Task;
@@ -162,6 +163,32 @@ public class TaskServiceImpl implements TaskService {
             taskRepository.deleteById(taskId);
         } else {
             throw new ResourceNotFoundException("Task doesn't exists in the database with task ID: " + taskId);
+        }
+    }
+
+    // GET ALL TASKS WITH EMP NAME ------------------------------------------------------------------
+    @Override
+    public List<TaskEmpDto> getAllTaskWithEmpName(Integer pageNumber, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("taskId"));
+
+        Page<Task> allPageTasks = taskRepository.findAll(pageable);
+        List<Task> allTask = allPageTasks.getContent();
+
+        if (!allTask.isEmpty()) {
+            List<TaskEmpDto> taskEmpDtosList = new ArrayList<>();
+
+            allTask.forEach(task ->
+                    taskEmpDtosList.add(new TaskEmpDto(
+                            task.getTaskId(),
+                            task.getTaskTitle(),
+                            task.getTaskDescription(),
+                            task.getTaskStatus(),
+                            task.getDueDate(),
+                            task.getEmployee().getEmpName()
+                    )));
+            return taskEmpDtosList;
+        } else {
+            throw new ResourceNotFoundException("Either this page has no tasks OR there are No tasks in the database !");
         }
     }
 

@@ -1,6 +1,7 @@
 package com.joel.task_master.service;
 
 import com.joel.task_master.dto.TaskDTO;
+import com.joel.task_master.dto.TaskEmpDto;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface TaskService {
     List<TaskDTO> getAllTask(Integer pageNumber, Integer pageSize);
     TaskDTO updateTaskById(Long taskId, TaskDTO taskDTO);
     void deleteTaskById(Long taskId);
-
+    List<TaskEmpDto> getAllTaskWithEmpName(Integer pageNumber, Integer pageSize);
 }

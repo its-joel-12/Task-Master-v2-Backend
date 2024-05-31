@@ -2,6 +2,7 @@ package com.joel.task_master.controller;
 
 import com.joel.task_master.dto.ApiResponseDto;
 import com.joel.task_master.dto.TaskDTO;
+import com.joel.task_master.dto.TaskEmpDto;
 import com.joel.task_master.exception.TaskMasterException;
 import com.joel.task_master.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -275,5 +276,44 @@ public class TaskController {
     public ResponseEntity<ApiResponseDto> deleteTaskById(@PathVariable("taskId") Long taskId) {
         taskService.deleteTaskById(taskId);
         return new ResponseEntity<>(new ApiResponseDto("Task Deleted Succesfully", true), HttpStatus.OK);
+    }
+
+    // GET ALL TASKS WITH EMP NAME ------------------------------------------------------------------
+    @Operation(
+            summary = "GET ALL TASKS WITH EMP NAME",
+            description = "You can get all tasks with emp names too",
+            responses = {
+                    @ApiResponse(
+                            description = "NO_CONTENT",
+                            responseCode = "204"
+                    ),
+                    @ApiResponse(
+                            description = "Employee/Task object not found | NOT_FOUND",
+                            responseCode = "404",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = TaskMasterException.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            description = "Client Side Error | BAD_REQUEST",
+                            responseCode = "400",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = TaskMasterException.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            description = "Server Side Error | INTERNAL_SERVER_ERROR",
+                            responseCode = "500",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = TaskMasterException.class)
+                            )
+                    )
+            }
+    )
+    @GetMapping("/task/emp-name")
+    @CrossOrigin
+    public ResponseEntity<List<TaskEmpDto>> getAllTaskWithEmpName(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+                                                                  @RequestParam(value = "pageSize", defaultValue = "3", required = false) Integer pageSize){
+        return new ResponseEntity<>(taskService.getAllTaskWithEmpName(pageNumber, pageSize), HttpStatus.OK);
     }
 }
