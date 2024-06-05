@@ -28,10 +28,10 @@ public class OtherServiceImpl implements OtherService {
 
         totalTasksCompleted = 0;
 
-        Pageable empPageable = PageRequest.of(0, 5);
+        Pageable empPageable = PageRequest.of(0, 999999999);
         Page<Employee> allPageEmps = employeeRepo.findAll(empPageable);
 
-        Pageable taskPageable = PageRequest.of(0, 5);
+        Pageable taskPageable = PageRequest.of(0, 999999999);
         Page<Task> allPageTasks = taskRepo.findAll(taskPageable);
 
         DashBoardDto dashBoardDto = new DashBoardDto();
