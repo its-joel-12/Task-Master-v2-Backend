@@ -360,6 +360,7 @@ public class EmployeeController {
             }
     )
     @GetMapping("/employee/keyword/{empName}")
+    @CrossOrigin
     public ResponseEntity<List<EmployeeDTO>> getEmployeesByName(@PathVariable String empName) {
         return new ResponseEntity<>(employeeService.getEmployeesByName(empName), HttpStatus.OK);
     }
