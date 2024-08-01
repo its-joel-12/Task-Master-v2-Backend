@@ -1,3 +1,4 @@
+com\joel\task_master\controller\OtherController.class
 com\joel\task_master\dto\EmployeeTaskDTO.class
 com\joel\task_master\model\Employee.class
 com\joel\task_master\exception\ResourceNotFoundException.class
@@ -11,8 +12,13 @@ com\joel\task_master\controller\EmployeeController.class
 com\joel\task_master\exception\TaskMasterException.class
 com\joel\task_master\controller\TaskController.class
 com\joel\task_master\repository\TaskRepository.class
+com\joel\task_master\service\OtherService.class
 com\joel\task_master\service\EmployeeService.class
+com\joel\task_master\dto\DashBoardDto.class
+com\joel\task_master\service\OtherServiceImpl.class
 com\joel\task_master\dto\EmployeeDTO.class
+com\joel\task_master\dto\TaskEmpDto.class
 com\joel\task_master\repository\EmployeeRepository.class
 com\joel\task_master\TaskMasterApplication.class
+com\joel\task_master\dto\ApiResponseDto.class
 com\joel\task_master\config\OpenApiConfig.class
