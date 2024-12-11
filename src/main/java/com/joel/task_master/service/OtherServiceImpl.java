@@ -23,7 +23,6 @@ public class OtherServiceImpl implements OtherService {
     private long totalTasksCompleted = 0;
 
     @Override
-
     public DashBoardDto getDashBoardData() {
 
         totalTasksCompleted = 0;
@@ -35,8 +34,7 @@ public class OtherServiceImpl implements OtherService {
         Page<Task> allPageTasks = taskRepo.findAll(taskPageable);
 
         DashBoardDto dashBoardDto = new DashBoardDto();
-
-
+        
         allPageTasks.forEach(t -> {
             if (t.getTaskStatus().equalsIgnoreCase("completed")) {
                 totalTasksCompleted++;
