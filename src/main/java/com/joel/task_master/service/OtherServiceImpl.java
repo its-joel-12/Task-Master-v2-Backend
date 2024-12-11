@@ -34,7 +34,7 @@ public class OtherServiceImpl implements OtherService {
         Page<Task> allPageTasks = taskRepo.findAll(taskPageable);
 
         DashBoardDto dashBoardDto = new DashBoardDto();
-        
+
         allPageTasks.forEach(t -> {
             if (t.getTaskStatus().equalsIgnoreCase("completed")) {
                 totalTasksCompleted++;
